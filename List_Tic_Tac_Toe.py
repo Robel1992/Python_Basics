@@ -140,7 +140,7 @@ def add(x,y):
     return x+y
 
 z=add("hey"," there")
-print(z)'''
+print(z)
 
 
 #back to the gameboard example
@@ -165,7 +165,46 @@ current_player = 1
 row_choice = 2
 col_choice = 0
 game_board(just_display=True)
-game_board(current_player , row_choice, col_choice)
+game_board(current_player , row_choice, col_choice)'''
 
 #----------------Mutability Revisited-------------------------
 
+game_final = "I want to play a game"
+
+#You can check the id of any given element by typing id(element)
+print(id(game_final))
+
+def game_board(player=0, row=0, column=0, just_display=False):
+    #You can also set game to be a global variable within the function (or outside the function) and the value will be set for it outside the function
+    global game_final 
+    game_final = "A game"
+    print(id(game_final))
+    #print(game_final) 
+    #you'll notice if you put "print(game_final)" 
+    #after the game_final, there is some sort of error. 
+    #You wont be able to change the string.. That is becuase 
+    #a string is IMMUTABLE. Not able to change.
+
+game_board()
+print(game_final)
+print(id(game_final))
+
+'''#Back to playing with the game-------------
+
+
+game = [1,2,3]
+
+#You can check the id of any given element by typing id(element)
+#print(id(game_final))
+
+def game_board(player=0, row=0, column=0, just_display=False):
+    #game = "A game" #when you run this, you'll see no change to a 'mutable list' even though lists are 'mutable'
+    game[1] = 99
+    #print(id(game))
+    print(game) 
+
+game_board()
+print(game)
+#print(id(game_final))
+
+#LESSON LEARNED: You can change elements within the list but you can not change the entire list from the jump.'''
