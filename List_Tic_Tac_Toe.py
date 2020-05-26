@@ -165,7 +165,7 @@ current_player = 1
 row_choice = 2
 col_choice = 0
 game_board(just_display=True)
-game_board(current_player , row_choice, col_choice)'''
+game_board(current_player , row_choice, col_choice)
 
 #----------------Mutability Revisited-------------------------
 
@@ -189,7 +189,7 @@ game_board()
 print(game_final)
 print(id(game_final))
 
-'''#Back to playing with the game-------------
+#Back to playing with the game-------------
 
 
 game = [1,2,3]
@@ -207,4 +207,120 @@ game_board()
 print(game)
 #print(id(game_final))
 
-#LESSON LEARNED: You can change elements within the list but you can not change the entire list from the jump.'''
+#LESSON LEARNED: You can change elements within the list but you can not change the entire list from the jump.
+
+
+game_final = [[0,0,0],
+            [0,0,0],
+            [0,0,0]]
+
+#We need to pass parametesrs throught this function:
+#You can set your function to default numbers, player=0, row=0, and column=0
+#To prevent any confusion on what id or value of variables being passed, just make a temporary variable to manipulate only in the function: game_map
+
+def game_board(game_map, player=0, row=0, column=0, just_display=False):
+    print("   a  b  c")
+    if not just_display:
+        game_map[row][column] = player
+
+    for count, line in enumerate(game_final):
+        print(count, line)
+
+    return game_map
+
+#Running this function
+game = game_board(game_final, just_display=True)
+game = game_board(game_final, player=0,row=2, column=1)
+
+#----------------Error Handling-------------------------
+#blank game board
+game = [[0,0,0],
+            [0,0,0],
+            [0,0,0]]
+
+
+#function to manipulate gameboard
+def game_board(game_map, player=0, row=0, column=0, just_display=False):
+
+#When we're testing for the correct input from the user - we'll use a try-except statement: You can pass try:, except:, else:, finally:
+#If it is within bounds and the user gives you the right input then you'll put in 
+#the correct statement. 
+    try:
+        print("   a  b  c")
+        if not just_display:
+            game_map[row][column] = player
+
+        for count, line in enumerate(game):
+            print(count, line)
+
+        #You can throw an error with raise
+        raise
+        return game_map
+
+#You can put in the actual error you are filtering out for within your ccode.
+    except IndexError as e:
+        print("Error: Make sure you input row/column as 0 1 or 2?", e)
+
+#You can have multiple exceptions. If you want your code to run indefinitely no matter what collecting data/or parsing the web, you can add another exceptions
+    except Exception as e:
+        print("Something went very wrong", e)
+
+#You can pass else:
+    else:
+
+#You can pass finally:
+    #finally count as x
+       # print("awesome", x)
+
+#Running this function
+game = game_board(game, just_display=True)
+game = game_board(game, player=0,row=3, column=1)
+
+#If you pass the wrong arguments in your code // This is just an example
+game = game_board(game_board, just_display=True)'''
+
+#----------------Calculating Horizontal Winner-------------------------
+#Note: Much easier to finish all the testing without User interface. It's much easier to just have the code play out.
+game = [[1,1,1],
+        [0,0,0],
+        [2,2,0]]
+
+#Ways to win--horizontally--vertically--diagonally
+
+#HARD CODE: Maybe think more dynamic: changing size of column and rows
+'''def win(current_game):
+    for row in game:
+        print(row)
+        col1 = row[0]
+        col2 = row[1]
+        col3 = row[2]
+
+        if col1 == col2 == col3:
+            print("Winner!!")
+
+#Very complicated: There is probably some type of function that does this for us. Search on Google.
+def win(current_game):
+    for row in game:
+        print(row)
+        all_match = True
+        for item in row:
+            if item != row[0]:
+                all_match = False
+        if all_match:
+                print("Winner")
+
+#row.count(row[0]) - checks the number of times value comes up in the bitch
+#len(row) - is the length of the row
+#row[0]!=0 - as long as the first bit of row doesn't equal zero
+def win(current_game):
+    for row in game:
+        print(row)
+        if row.count(row[0])==len(row) and row[0] != 0:
+            #You can print it out with an f""", you can pass a value using {}
+            print(f"Player {row[0]} is the winner!")
+
+
+
+win(game)'''
+
+#----------------Calculating Horizontal Winner-------------------------
