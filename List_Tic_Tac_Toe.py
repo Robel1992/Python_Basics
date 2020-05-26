@@ -323,4 +323,46 @@ def win(current_game):
 
 win(game)'''
 
+#----------------Calculating Vertical Winner-------------------------
+
+#My Method
+game = [[2,0,1],
+        [0,0,1],
+        [2,2,1],]
+
+#Using built-in python function: range()
+for col in range(len(game)):
+    check = []
+
+    for row in game:
+        check.append(row[col])
+
+    if check.count(check[col])==len(check) and check[col] != 0:
+        print(f"Player {row[col]} is the winner!")
+
+'''
+#-------------Robel's Method---------------------
+#switches the rows and columns
+game_transposed = [[game[j][i] for j in range(len(game))] for i in range(len(game[0]))] 
+
+
+#checks for winner
+def win(current_game, current_game_t):
+    #checks winner horizontally
+    for row in game:
+        print(row)
+        if row.count(row[0])==len(row) and row[0] != 0:
+            #You can print it out with an f""", you can pass a value using {}
+            print(f"Player {row[0]} is the winner!")
+
+    #Checks winner vertically
+    for row in game_transposed:
+        print(row)
+        if row.count(row[0])==len(row) and row[0] != 0:
+            #You can print it out with an f""", you can pass a value using {}
+            print(f"Player {row[0]} is the winner!")
+
+
+win(game, game_transposed)'''
+
 #----------------Calculating Horizontal Winner-------------------------
