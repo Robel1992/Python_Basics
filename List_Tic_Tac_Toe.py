@@ -321,7 +321,7 @@ def win(current_game):
 
 
 
-win(game)'''
+win(game)
 
 #----------------Calculating Vertical Winner-------------------------
 
@@ -340,7 +340,6 @@ for col in range(len(game)):
     if check.count(check[col])==len(check) and check[col] != 0:
         print(f"Player {row[col]} is the winner!")
 
-'''
 #-------------Robel's Method---------------------
 #switches the rows and columns
 game_transposed = [[game[j][i] for j in range(len(game))] for i in range(len(game[0]))] 
@@ -365,4 +364,57 @@ def win(current_game, current_game_t):
 
 win(game, game_transposed)'''
 
-#----------------Calculating Horizontal Winner-------------------------
+#----------------Calculating Diagonal Winner-------------------------
+
+#My Method
+game = [[1,0,2],
+        [0,2,1],
+        [2,2,1],]
+
+'''#case number one - hard coded
+if game[0][0] == game[1][1] == game[2][2]:
+    print(f"Player {game[0][0]} is the winner")
+
+#case number two - hard coded
+if game[2][0] == game[1][1] == game[0][2]:
+    print(f"Player {game[2][0]} is the winner")'''
+
+#Let's make the entire thing dynamic.
+
+#case 1 diagonal.
+diags = []
+for index in range(len(game)):
+    diags.append(game[index][index])
+
+if diags.count(diags[index])==len(diags) and diags[index] != 0:
+        print(f"Player {diags[index]} is the winner!")
+
+#case 2 diagonal - using the built in function reversed
+'''cols = list(reversed(range(len(game))))
+rows = range(len(game))
+
+print(type(cols))
+
+#This is a very common function for programmer to use (iterate over 2 lists together) that's why there's the zip() function
+
+for col, row in zip(cols, rows):
+    print(col, row)
+
+for i in range(len(game)):
+    print(i, cols[i])
+    #diags.append(game[i-1][i-1])'''
+
+diag = []
+for idx, reverse_idx in enumerate(reversed(range(len(game)))):
+    diag.append(game[idx][reverse_idx])
+
+if diag.count(diag[0])==len(diag) and diag[0] != 0:
+        print(f"Player {diag[0]} is the winner!")
+
+
+#--------Putting all the winning cases together ------
+
+def win(current_game)
+    #Horizontal Win
+    
+    #Diagonal Win
