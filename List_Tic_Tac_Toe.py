@@ -277,7 +277,7 @@ game = game_board(game, just_display=True)
 game = game_board(game, player=0,row=3, column=1)
 
 #If you pass the wrong arguments in your code // This is just an example
-game = game_board(game_board, just_display=True)'''
+game = game_board(game_board, just_display=True)
 
 #----------------Calculating Horizontal Winner-------------------------
 #Note: Much easier to finish all the testing without User interface. It's much easier to just have the code play out.
@@ -288,7 +288,7 @@ game = [[1,1,1],
 #Ways to win--horizontally--vertically--diagonally
 
 #HARD CODE: Maybe think more dynamic: changing size of column and rows
-'''def win(current_game):
+def win(current_game):
     for row in game:
         print(row)
         col1 = row[0]
@@ -362,7 +362,7 @@ def win(current_game, current_game_t):
             print(f"Player {row[0]} is the winner!")
 
 
-win(game, game_transposed)'''
+win(game, game_transposed)
 
 #----------------Calculating Diagonal Winner-------------------------
 
@@ -371,13 +371,13 @@ game = [[1,0,2],
         [0,2,1],
         [2,2,1],]
 
-'''#case number one - hard coded
+#case number one - hard coded
 if game[0][0] == game[1][1] == game[2][2]:
     print(f"Player {game[0][0]} is the winner")
 
 #case number two - hard coded
 if game[2][0] == game[1][1] == game[0][2]:
-    print(f"Player {game[2][0]} is the winner")'''
+    print(f"Player {game[2][0]} is the winner")
 
 #Let's make the entire thing dynamic.
 
@@ -390,7 +390,7 @@ if diags.count(diags[index])==len(diags) and diags[index] != 0:
         print(f"Player {diags[index]} is the winner!")
 
 #case 2 diagonal - using the built in function reversed
-'''cols = list(reversed(range(len(game))))
+cols = list(reversed(range(len(game))))
 rows = range(len(game))
 
 print(type(cols))
@@ -402,19 +402,52 @@ for col, row in zip(cols, rows):
 
 for i in range(len(game)):
     print(i, cols[i])
-    #diags.append(game[i-1][i-1])'''
-
+    #diags.append(game[i-1][i-1])
 diag = []
 for idx, reverse_idx in enumerate(reversed(range(len(game)))):
     diag.append(game[idx][reverse_idx])
 
 if diag.count(diag[0])==len(diag) and diag[0] != 0:
-        print(f"Player {diag[0]} is the winner!")
+        print(f"Player {diag[0]} is the winner!")'''
+
 
 
 #--------Putting all the winning cases together ------
+game = [[1,1,1],
+        [0,0,0],
+        [1,2,1],]
 
-def win(current_game)
-    #Horizontal Win
-    
-    #Diagonal Win
+def win(current_game):
+    # Horizontal Win
+    for row in game:
+        print(row)
+        if row.count(row[0]) == len(row) and row[0] != 0:
+            print(f"Player {row[0]} is the winner horizontally!")
+
+    # Vertical Win
+    for col in range(len(game[0])):
+        check = []
+
+        for row in game:
+            check.append(row[col])
+
+        if check.count(check[0])==len(check) and check[0] != 0:
+            print(f"Player {check[0]} is the winner vertically!")
+
+    # / Diagonal Win
+    diag = []
+    for idx, reverse_idx in enumerate(reversed(range(len(game)))):
+        diag.append(game[idx][reverse_idx])
+
+    if diag.count(diag[0])==len(diag) and diag[0] != 0:
+            print(f"Player {diag[0]} is the winner diagonally!")
+
+    # \ Diagonal Win
+    diags = []
+    for index in range(len(game)):
+        diags.append(game[index][index])
+
+    if diags.count(diags[0])==len(diags) and diags[0] != 0:
+            print(f"Player {diags[0]} is the winner diagonally!")
+
+win(game)
