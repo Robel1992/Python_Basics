@@ -29,7 +29,7 @@ button = tk.Button(master, text="Close Window", command=closewindow)
 
 button.pack()
 
-master.mainloop()'''
+master.mainloop()
 
 #-----------------------------Creating a frame within screen --------------------
 #Import tkinter 
@@ -45,3 +45,29 @@ button = tk.Button(master, text="Close Window", command=closewindow)
 button.pack()
 
 master.mainloop()
+
+#-----------------------------Creating an entry for two people --------------------
+from tkinter import *
+import tkinter.messagebox
+
+tk = Tk()
+tk.title("Tic Tac Toe")
+
+pa = StringVar()
+playerb = StringVar()
+p1 = StringVar()
+p2 = StringVar()
+
+player1_name = Entry(tk, textvariable=p1, bd=5)
+player1_name.grid(row=1, column=1, columnspan=8)
+player2_name = Entry(tk, textvariable=p2, bd=5)
+player2_name.grid(row=2, column=1, columnspan=8)
+
+mainloop()'''
+
+#-----------------------------Creating an entry for two people --------------------
+from tkinter import *
+
+root = Tk()
+
+label_1 = Label(root, text = "Name")
