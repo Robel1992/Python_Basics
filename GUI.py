@@ -70,4 +70,12 @@ from tkinter import *
 
 root = Tk()
 
+#the label of the box
 label_1 = Label(root, text = "Name")
+label_2 = Label(root, text = "Password")
+
+#The entry boxes to get the information
+entry_1 = Entry(root)
+entry_2 = Entry(root)
+
+#placeing the elements we created ABOVE!
