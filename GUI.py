@@ -254,7 +254,7 @@ def div():
     label.grid(row=0, column = 4)
 
 def clear_table():
-    label=Label(master, text="                                                ")
+    label=Label(master, text="                                               ")
     label.grid(row=0, column = 4)
 
 #Turn first number and second number into a string
