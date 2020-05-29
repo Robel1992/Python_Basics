@@ -429,9 +429,36 @@ for i in range(10):
 player_choice = itertools.cycle([1,2])
 
 for i in range(10):
-   print(next(player_choice))'''
-   
+   print(next(player_choice))
+
+#--------------- Difference between iterable and iterator ----------------
+#important note:
+#interable: a thing we can iterate over
+#iterator: a special object with next() method.
+
+import itertools
+
+x = [1,2,3,4] #iterable.
+
+for i in x:
+    print(i)
+
+#using itertools lib
+n = itertools.cycle(x) #iterator!....also iterable...
+
+for i in n:
+    print(i)#This will print [1,2,3,4] forever!
+
+#can you make it limited?
+y = iter(x)
+
+for i in y:
+    print(i)'''
+    
+
 #--------Putting all the winning cases together ------
+import itertools
+
 game = [[1,0,0],
         [0,1,0],
         [1,2,1],]
@@ -479,14 +506,15 @@ def game_board(game_map, player=0, row=0, column=0, just_display=False):
             print(count, row)
         return game_map
     except IndexError:
-        print("Did you attempt to play a row or column outside the range of 0,1 or 2? (IndexError)")
+        print("Did you attempt to play a row or column outside the range of 0, 1 or 2? (IndexError)")
         return False
     except Exception as e:
         print(str(e))
         return False
 
 play = True
-players = [1,2]
+player = [1,2]
+player_choice = itertools.cycle(player)
 while play:
     game = [[0,0,0],
             [0,0,0],
@@ -496,7 +524,8 @@ while play:
     game = game_board(game, just_display=True)
     while not game_won:
         #taking input from a user
-        current_player = 1
+        current_player = next(player_choice)
+        print(f"Current Player: {current_player}")
         column_choice = int(input("What column do you want to play? (0 , 1, 2): "))
         row_choice = int(input("What row do you want to play? (0, 1, 2): "))
         game = game_board(game, current_player, row_choice, column_choice)
