@@ -63,12 +63,15 @@ player1_name.grid(row=1, column=1, columnspan=8)
 player2_name = Entry(tk, textvariable=p2, bd=5)
 player2_name.grid(row=2, column=1, columnspan=8)
 
-mainloop()'''
+mainloop()
 
 #-----------------------------Creating an entry for two people --------------------
 from tkinter import *
+import tkinter.messagebox
 
 root = Tk()
+
+root.title("Username & Passowrd")
 
 #the label of the box
 label_1 = Label(root, text = "Name")
@@ -79,3 +82,183 @@ entry_1 = Entry(root)
 entry_2 = Entry(root)
 
 #placeing the elements we created ABOVE!
+label_1.grid(row=0, sticky=E)
+label_2.grid(row=1, stick=E)
+
+entry_1.grid(row=0, column=1)
+entry_2.grid(row=1, column=1)
+
+#keep me logged in
+
+c = Checkbutton(root, text="Keep me logged in")
+c.grid(columnspan=2)
+
+#Pick a color
+color = root.colormapwindows(root)
+
+mainloop()
+
+#----------------------------example code ----------------------
+from tkinter import *
+
+master = Tk()
+
+e = Entry(master)
+e.pack()
+
+e.focus_set()
+
+def callback():
+    print(e.get())
+
+b = Button(master, text="get", width=10, command=callback)
+b.pack()
+
+mainloop()
+e = Entry(master, width=50)
+e.pack()
+
+text = e.get()
+def makeentry(parent, caption, width=None, **options):
+    Label(parent, text=caption).pack(side=LEFT)
+    entry = Entry(parent, **options)
+    if width:
+        entry.config(width=width)
+    entry.pack(side=LEFT)
+    return entry
+
+user = makeentry(parent, "User name:", 10)
+password = makeentry(parent, "Password:", 10, show="*")
+content = StringVar()
+entry = Entry(parent, text=caption, textvariable=content)
+
+text = content.get()
+content.set(text)
+
+#------------------My do nothing app ----------------S
+import tkinter as tk
+
+class App(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.pack()
+
+# create the application
+myapp = App()
+
+#
+# here are method calls to the window manager class
+#
+myapp.master.title("My Do-Nothing Application")
+myapp.master.maxsize(1000, 400)
+
+# start the program
+myapp.mainloop()
+
+
+#=---------------------=-=-=-=-=-=-=-=
+from tkinter import *
+
+
+def check_expression():
+    #Your code that checks the expression
+    varContent = inputentry.get() # get what's written in the inputentry entry widget
+    outputtext.delete('0', 'end-1c') # clear the outputtext text widget
+    outputtext.insert(varContent)
+
+root = Tk()
+root.title("Post-fix solver")
+root.geometry("500x500")
+
+mainframe = Frame(root)
+mainframe.grid(column=0, row=0)
+
+inputentry = Entry(mainframe)
+inputentry.grid(column=1, row=1)
+
+executebutton = Button(mainframe, text="Run", command=check_expression)
+executebutton.grid(column=1, row=5)              
+
+outputtext = Text(mainframe)
+outputtext.grid(column=1, row=5)
+
+root.mainloop()
+
+#-------------Example for Printing a Value -------------------
+from tkinter import *
+import time
+
+def printSomething():
+    # if you want the button to disappear:
+    # button.destroy() or button.pack_forget()
+    label = Label(root, text= "Hey whatsup bro, i am doing something very interresting.")
+    #this creates a new label to the GUI
+    label.pack() 
+    button.destroy()
+
+
+root = Tk()
+
+button = Button(root, text="Print Me", command=printSomething) 
+button.pack()
+
+
+root.mainloop()'''
+
+#---------------------Simple Calculator ---------------------------------
+from tkinter import *
+
+master = Tk()
+master.title("Shitty Calculator")
+
+#framework
+
+#Print Answer
+def printAnswer():
+    label = Label(master, text= "Here's the answer")
+    label.grid(row=1, column = 4)
+
+
+
+#Turn first number and second number into a string
+first_number_val = StringVar()
+second_number_val = StringVar()
+
+#the label of the box
+label_1 = Label(master, text = "First Number")
+label_2 = Label(master, text = "Second Number")
+label_answer = Label(master, text = "The answer")
+first_number = Entry(master, textvariable = first_number_val, width=5)
+second_number = Entry(master, textvariable = second_number_val, width=5)
+
+
+
+#placeing the elements we created ABOVE!
+label_1.grid(row=2, column=0)
+label_2.grid(row=2, column=2)
+label_answer.grid(row=2, column = 4)
+
+first_number.grid(row=1, column=0)
+second_number.grid(row=1, column=2)
+
+
+#Buttons
+Button_add = Button(master, text="+", width=2) 
+Button_add.grid(row=0, column=1)
+
+Button_sub = Button(master, text="-", width=2)
+Button_sub.grid(row=1, column=1)
+
+Button_mul = Button(master, text="*", width=2)
+Button_mul.grid(row=2, column=1)
+
+
+Button_div = Button(master, text="/", width=2)
+Button_div.grid(row=3, column=1)
+
+Button_equals = Button(master, text="=", width=3, command = printAnswer)
+Button_equals.grid(row = 1 , column=3)
+
+#master.geometry("500x500")
+
+master.mainloop() 
