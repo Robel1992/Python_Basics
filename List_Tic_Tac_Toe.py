@@ -520,7 +520,7 @@ while play:
             [0,0,0],
             [0,0,0],]
 
-    game_won = False
+    game_won = True
     game = game_board(game, just_display=True)
     while not game_won:
         #taking input from a user
