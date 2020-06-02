@@ -459,15 +459,18 @@ for i in y:
 #--------Putting all the winning cases together ------
 import itertools
 
-game = [[1,0,0],
-        [0,1,0],
-        [1,2,1],]
-
 def win(current_game):
+
+    def all_same(L):
+        if l.count(row[0]) == len(l) and l[0] != 0:
+            return True
+        else:
+            return False
+
     # Horizontal Win
     for row in game:
         print(row)
-        if row.count(row[0]) == len(row) and row[0] != 0:
+        if all_same(row):
             print(f"Player {row[0]} is the winner horizontally!")
 
     # Vertical Win
@@ -477,7 +480,7 @@ def win(current_game):
         for row in game:
             check.append(row[col])
 
-        if check.count(check[0])==len(check) and check[0] != 0:
+        if all_same(check):
             print(f"Player {check[0]} is the winner vertically!")
 
     # / Diagonal Win
@@ -485,7 +488,7 @@ def win(current_game):
     for idx, reverse_idx in enumerate(reversed(range(len(game)))):
         diag.append(game[idx][reverse_idx])
 
-    if diag.count(diag[0])==len(diag) and diag[0] != 0:
+    if all_same(diag):
             print(f"Player {diag[0]} is the winner diagonally!")
 
     # \ Diagonal Win
@@ -493,24 +496,29 @@ def win(current_game):
     for index in range(len(game)):
         diags.append(game[index][index])
 
-    if diags.count(diags[0])==len(diags) and diags[0] != 0:
+    if all_same(diags):
             print(f"Player {diags[0]} is the winner diagonally!")
 
 #Gameboard App
 def game_board(game_map, player=0, row=0, column=0, just_display=False):
     try:
+        if game_map[row][column] != 0:
+            print("This position is occupide! Choose another!")
+            return game_map, False
         print("   0  1  2")
         if not just_display:
             game_map[row][column] = player
         for count, row in enumerate(game_map):
             print(count, row)
-        return game_map
+        return game_map, True
+
     except IndexError:
         print("Did you attempt to play a row or column outside the range of 0, 1 or 2? (IndexError)")
-        return False
+        return game-map, False
+
     except Exception as e:
         print(str(e))
-        return False
+        return game_map, False
 
 play = True
 player = [1,2]
@@ -520,16 +528,17 @@ while play:
             [0,0,0],
             [0,0,0],]
 
-    game_won = True
-    game = game_board(game, just_display=True)
+    game_won = False
+    game, _ = game_board(game, just_display=True)
     while not game_won:
         #taking input from a user
         current_player = next(player_choice)
         print(f"Current Player: {current_player}")
-        column_choice = int(input("What column do you want to play? (0 , 1, 2): "))
-        row_choice = int(input("What row do you want to play? (0, 1, 2): "))
-        game = game_board(game, current_player, row_choice, column_choice)
-
-
-
-#game = game_board(game, player=1, row=3, column=1)
+        played = False
+        
+        while not played:
+            column_choice = int(input("What column do you want to play? (0 , 1, 2): "))
+            row_choice = int(input("What row do you want to play? (0, 1, 2): "))
+            game = game_board(game, current_player, row_choice, column_choice)
+            if game:
+                played = True
