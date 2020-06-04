@@ -203,7 +203,7 @@ button = Button(root, text="Print Me", command=printSomething)
 button.pack()
 
 
-root.mainloop()'''
+root.mainloop()
 
 #---------------------Simple Calculator ---------------------------------
 from tkinter import *
@@ -299,6 +299,65 @@ Button_equals.grid(row = 0, column=3)
 Button_clear = Button(master, text="c", width =3, command=clear_table)
 Button_clear.grid(row = 2 , column=2)
 
+
+#master.geometry("500x500")
+
+master.mainloop() '''
+
+#-------------------- TIC TAC TOE ----------------------------
+
+from tkinter import *
+import tkinter.font as font
+
+master = Tk()
+master.title("TIC TAC TOE")
+
+#framework
+
+#Functions, where everything works
+def clicked():
+    click = True
+    if click:
+        myFont = font.Font(family='Courier', weight='bold')
+        Button_00 = Button(master, bg="blue", fg="white", text="X", width=20, height=8, command = clicked) 
+        Button_00['font'] = myFont
+        Button_00.grid(row=0, column=0)
+
+#the label of the box
+label_1 = Label(master, text = "First Number")
+label_2 = Label(master, text = "Second Number")
+
+#placeing the elements we created ABOVE!
+label_1.grid(row=1, column=0)
+label_2.grid(row=1, column=2)
+
+#Buttons
+Button_00 = Button(master, bg="red", text=" ", width=20, height=8, command = clicked) 
+Button_00.grid(row=0, column=0)
+
+Button_01 = Button(master, bg="red", text=" ", width=20, height=8) 
+Button_01.grid(row=0, column=1)
+
+Button_02 = Button(master, bg="red", text=" ", width=20, height=8) 
+Button_02.grid(row=0, column=2)
+
+Button_10 = Button(master, bg="red", text=" ", width=20, height=8) 
+Button_10.grid(row=1, column=0)
+
+Button_11 = Button(master, bg="red", text=" ", width=20, height=8) 
+Button_11.grid(row=1, column=1)
+
+Button_12 = Button(master, bg="red", text=" ", width=20, height=8) 
+Button_12.grid(row=1, column=2)
+
+Button_20 = Button(master, bg="red", text=" ", width=20, height=8) 
+Button_20.grid(row=2, column=0)
+
+Button_21 = Button(master, bg="red", text=" ", width=20, height=8) 
+Button_21.grid(row=2, column=1)
+
+Button_22 = Button(master, bg="red", text=" ", width=20, height=8) 
+Button_22.grid(row=2, column=2)
 
 #master.geometry("500x500")
 
